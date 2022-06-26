@@ -6,8 +6,10 @@ export class ListSpecificationsController {
 
   constructor(private listSpecificationsUseCase: ListSpecificationsUseCase) { }
 
-  handle(req: Request, res: Response) {
-    return res.status(200).json(this.listSpecificationsUseCase.execute());
+  async handle(req: Request, res: Response) {
+    const specification = await this.listSpecificationsUseCase.execute().then(specification => (specification));
+
+    return res.status(200).json(specification);
   }
 
 }

@@ -6,7 +6,7 @@ export class ListSpecificationsUseCase {
 
   constructor(private specificationRepository: ISpecificationsRepository) { }
 
-  execute(): Specification[] {
-    return this.specificationRepository.list();
+  async execute(): Promise<Specification[]> {
+    return await this.specificationRepository.list().then(specification => (specification));
   }
 }

@@ -3,7 +3,7 @@ import { ICreateCategoryDTO } from '../CategoriesRepository';
 
 
 export interface ICategoriesRepository {
-  findByName(name: string): Category | undefined;
-  create({ name, description }: ICreateCategoryDTO): Category;
-  list(): Category[];
+  create({ name, description }: ICreateCategoryDTO): Promise<Category>;
+  findByName(name: string): Promise<Category | null>;
+  list(): Promise<Category[]>;
 }

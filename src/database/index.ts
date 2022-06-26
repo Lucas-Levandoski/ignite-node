@@ -2,13 +2,16 @@ import { DataSource } from 'typeorm';
 
 const PostgresDataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
+  host: 'postgres_database',
   port: 5432,
   username: 'docker',
   password: 'ignite',
   database: 'ignite',
   migrations: [
     './src/database/migrations/*.ts'
+  ],
+  entities: [
+    'src/**/entities/*{.ts,.js}'
   ]
 });
 
