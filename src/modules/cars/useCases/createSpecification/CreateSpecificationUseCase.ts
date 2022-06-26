@@ -1,5 +1,5 @@
-import { Specification } from "../../models/Specification";
-import { ISpecificationsRepository } from "../../repositories/implementations/ISpecificationsRepository";
+import { Specification } from '../../entities/Specification';
+import { ISpecificationsRepository } from '../../repositories/implementations/ISpecificationsRepository';
 
 
 interface IRequest {
@@ -7,18 +7,18 @@ interface IRequest {
   description: string;
 }
 
-export class CreateSpecificationUseCase { 
+export class CreateSpecificationUseCase {
 
   constructor(private specificationRepository: ISpecificationsRepository) { }
 
-  execute({name, description}: IRequest): Specification {
+  execute({ name, description }: IRequest): Specification {
     const categoryExists = this.specificationRepository.findByName(name);
 
     if (categoryExists) {
-      throw new Error("Category already exists");
+      throw new Error('Category already exists');
     }
 
-    this.specificationRepository.create({ name, description }); 
+    this.specificationRepository.create({ name, description });
 
     return new Specification(name, description);
   }

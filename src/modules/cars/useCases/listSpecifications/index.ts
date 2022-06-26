@@ -1,6 +1,6 @@
-import { SpecificationsRepository } from "../../repositories/SpecificationsRepository";
-import { ListSpecificationsUseCase } from "./ListSpecificationsUseCase";
-import { ListSpecificationsController } from "./ListSpecificationsController";
+import { SpecificationsRepository } from '../../repositories/SpecificationsRepository';
+import { ListSpecificationsUseCase } from './ListSpecificationsUseCase';
+import { ListSpecificationsController } from './ListSpecificationsController';
 
 
 const specificationsRepository = SpecificationsRepository.getInstance();

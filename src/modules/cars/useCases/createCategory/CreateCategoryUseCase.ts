@@ -1,23 +1,23 @@
-import { Category } from "../../models/Category";
-import { CategoriesRepository } from "../../repositories/CategoriesRepository";
+import { Category } from '../../entities/Category';
+import { CategoriesRepository } from '../../repositories/CategoriesRepository';
 
 interface IRequest {
   name: string;
   description: string;
 }
 
-export class CreateCategoryUseCase {  
-  constructor( private categoriesRepository: CategoriesRepository ) { }
+export class CreateCategoryUseCase {
+  constructor(private categoriesRepository: CategoriesRepository) { }
 
-  execute({name, description}: IRequest): Category {
+  execute({ name, description }: IRequest): Category {
     const categoryExists = this.categoriesRepository.findByName(name);
 
     if (categoryExists) {
-      throw new Error("Category already exists");
+      throw new Error('Category already exists');
     }
 
-    this.categoriesRepository.create({ name, description }); 
+    this.categoriesRepository.create({ name, description });
 
     return new Category(name, description);
   }
-};
+}

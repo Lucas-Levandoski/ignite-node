@@ -1,11 +1,11 @@
-import { Category } from "../models/Category";
-import { ICategoriesRepository } from "./implementations/ICategoriesRepository";
+import { Category } from '../entities/Category';
+import { ICategoriesRepository } from './implementations/ICategoriesRepository';
 
 // DTO = Data Transfer Object
 export interface ICreateCategoryDTO {
   name: string;
   description: string;
-};
+}
 
 export class CategoriesRepository implements ICategoriesRepository {
   private categories: Category[];
@@ -23,7 +23,7 @@ export class CategoriesRepository implements ICategoriesRepository {
     return CategoriesRepository.INSTANCE;
   }
 
-  create({ name, description}: ICreateCategoryDTO): Category {
+  create({ name, description }: ICreateCategoryDTO): Category {
     const category = new Category(name, description);
 
     this.categories.push(category);
@@ -38,4 +38,4 @@ export class CategoriesRepository implements ICategoriesRepository {
   list(): Category[] {
     return this.categories;
   }
-};
+}

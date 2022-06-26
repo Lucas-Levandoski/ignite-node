@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/app.ts",
     "start": "nodemon --watch --inspect 'src/' --exec ts-node src/app.ts -e ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "typeorm": "typeorm-ts-node-commonjs -d ./src/database/index.ts"
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "author": "lls",
   "license": "MIT",

@@ -21,8 +21,8 @@ categoriesRoutes.get('/', (req, res) => {
   return listCategoriesController.handle(req, res);
 });
 
-categoriesRoutes.post('/import', upload.single('file') , (req, res) => {
+categoriesRoutes.post('/import', upload.single('file'), (req, res) => {
   importCategoryController.handle(req, res);
 });
 
-export { categoriesRoutes }
+export { categoriesRoutes };

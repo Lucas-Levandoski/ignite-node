@@ -1,5 +1,5 @@
-import { Specification } from "../models/Specification";
-import { ICreateSpecificationDTO, ISpecificationsRepository } from "./implementations/ISpecificationsRepository";
+import { Specification } from '../entities/Specification';
+import { ICreateSpecificationDTO, ISpecificationsRepository } from './implementations/ISpecificationsRepository';
 
 
 export class SpecificationsRepository implements ISpecificationsRepository {
@@ -11,10 +11,10 @@ export class SpecificationsRepository implements ISpecificationsRepository {
   }
 
   public static getInstance(): SpecificationsRepository {
-    if(!SpecificationsRepository.INSTANCE) {
+    if (!SpecificationsRepository.INSTANCE) {
       SpecificationsRepository.INSTANCE = new SpecificationsRepository();
     }
-    
+
     return SpecificationsRepository.INSTANCE;
   }
 

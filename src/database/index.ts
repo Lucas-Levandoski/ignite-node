@@ -2,14 +2,14 @@ import { DataSource } from 'typeorm';
 
 const PostgresDataSource = new DataSource({
   type: 'postgres',
-  host: 'postgres_database',
+  host: 'localhost',
   port: 5432,
   username: 'docker',
   password: 'ignite',
   database: 'ignite',
   migrations: [
     './src/database/migrations/*.ts'
-  ],
+  ]
 });
 
 PostgresDataSource.initialize()
@@ -21,4 +21,4 @@ PostgresDataSource.initialize()
     console.error(err);
   });
 
-export { PostgresDataSource };
+export default PostgresDataSource;

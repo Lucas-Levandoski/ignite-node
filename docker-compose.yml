@@ -18,8 +18,9 @@ services:
       - 3333:3333
     volumes:
       - .:/app
-
-
+    links:
+      - postgres_database
+    
 volumes:
   pgdata: 
     driver: local

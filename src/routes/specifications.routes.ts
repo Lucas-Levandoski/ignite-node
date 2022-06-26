@@ -10,7 +10,7 @@ specificationsRoutes.post('/', (req, res) => {
 });
 
 specificationsRoutes.get('/', (req, res) => {
-  return listSpecificationsController.handle(req,res);
+  return listSpecificationsController.handle(req, res);
 });
 
-export { specificationsRoutes }
+export { specificationsRoutes };

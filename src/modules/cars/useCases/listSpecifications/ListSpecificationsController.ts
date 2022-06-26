@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { ListSpecificationsUseCase } from "./ListSpecificationsUseCase";
+import { Request, Response } from 'express';
+import { ListSpecificationsUseCase } from './ListSpecificationsUseCase';
 
 
-export class ListSpecificationsController { 
+export class ListSpecificationsController {
 
   constructor(private listSpecificationsUseCase: ListSpecificationsUseCase) { }
 
