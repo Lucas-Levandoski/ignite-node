@@ -1,0 +1,24 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],    
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2021
+  },
+  "env": {
+    "node": true,
+    "es2021": true,
+    "browser": true
+  },
+  "rules": {
+    "quotes": ["error", "single"],
+		"semi": ["error", "always"],
+    "indent": ["error", "tab"],
+    "no-console": ["warn", {
+      "allow": ["warn", "error"]
+    }]
+  }
+}
