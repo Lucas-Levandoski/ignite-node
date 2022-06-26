@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { ImportCategoryUseCase } from "./ImportCategoryUseCase";
+import { Request, Response } from 'express';
+import { ImportCategoryUseCase } from './ImportCategoryUseCase';
 
 
 export class ImportCategoryController {
@@ -10,8 +10,6 @@ export class ImportCategoryController {
 
     if (file)
       this.importCategoryUseCase.execute(file);
-
-    console.log('test');
 
     return res.send('ok ok');
   }

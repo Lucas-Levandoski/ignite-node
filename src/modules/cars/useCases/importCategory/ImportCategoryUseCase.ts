@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { parse } from 'csv-parse';
-import { CategoriesRepository } from "../../repositories/CategoriesRepository";
+import { CategoriesRepository } from '../../repositories/CategoriesRepository';
 
 interface IImportCategory {
   name: string;
@@ -8,41 +8,39 @@ interface IImportCategory {
 }
 
 export class ImportCategoryUseCase {
-  constructor(private categoriesRepository: CategoriesRepository) {}
-
-
+  constructor(private categoriesRepository: CategoriesRepository) { }
 
   private loadCategories(file: Express.Multer.File): Promise<IImportCategory[]> {
     return new Promise((resolve, reject) => {
       const categories: IImportCategory[] = [];
       const stream = fs.createReadStream(file.path);
-      
+
       const parseFile = parse();
 
       stream.pipe(parseFile)
-      .on('data', (data) => {
-        const [name, description] = data;
-        categories.push({ name, description });
-      })
-      .on('end', () => {
-        resolve(categories);
-        fs.promises.unlink(file.path);
-      })
-      .on('error', (err) => {
-        reject(err);
-      });
+        .on('data', (data) => {
+          const [name, description] = data;
+          categories.push({ name, description });
+        })
+        .on('end', () => {
+          resolve(categories);
+          fs.promises.unlink(file.path);
+        })
+        .on('error', (err) => {
+          reject(err);
+        });
 
-    });    
+    });
   }
 
 
-  
+
   execute(file: Express.Multer.File) {
     this.loadCategories(file).then((categories) => {
       categories.forEach(category => {
-        if(!this.categoriesRepository.findByName(category.name)) 
+        if (!this.categoriesRepository.findByName(category.name))
           this.categoriesRepository.create(category);
       });
-    });    
+    });
   }
 }
