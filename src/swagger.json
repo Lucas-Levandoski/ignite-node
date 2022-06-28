@@ -17,9 +17,192 @@
           "content": {
             "application/json": {
               "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
               }
             }
           }
+        },
+        "responses": {
+          "201": {
+            "description": "New category created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Category"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Category name '$name' already exists."
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "List all categories",
+        "description": "List all categories",
+        "responses": {
+          "200": {
+            "description": "List of found categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Category"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Category name '$name' already exists."
+          }
+        }
+      }
+    },
+    "/categories/import": {
+      "post": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Create a list of categories based on a csv file",
+        "description": "Upload a csv file",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "categories created"
+          }
+        }
+
+      }
+    },
+    "/specifications": {
+      "post": {
+        "tags": [
+          "specifications"
+        ],
+        "summary": "Create a new specification",
+        "description": "Create a new specification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "New specification created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Specification"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "specification name '$name' already exists."
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "specifications"
+        ],
+        "summary": "List all specifications",
+        "description": "List all specifications",
+        "responses": {
+          "200": {
+            "description": "List of found specifications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Specification"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "Specification": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     }
