@@ -1,9 +1,9 @@
-import { SpecificationsRepository } from '../../repositories/SpecificationsRepository';
-import { CreateSpecificationController } from './CreateSpecificationController';
-import { CreateSpecificationUseCase } from './CreateSpecificationUseCase';
+// import { SpecificationsRepository } from '../../repositories/SpecificationsRepository';
+// import { CreateSpecificationController } from './CreateSpecificationController';
+// import { CreateSpecificationUseCase } from './CreateSpecificationUseCase';
 
 
-const specificationsRepository = SpecificationsRepository.getInstance();
-const createSpecificationUseCase = new CreateSpecificationUseCase(specificationsRepository);
+// const specificationsRepository = SpecificationsRepository.getInstance();
+// const createSpecificationUseCase = new CreateSpecificationUseCase(specificationsRepository);
 
-export const createSpecificationController = new CreateSpecificationController(createSpecificationUseCase);
+// export const createSpecificationController = new CreateSpecificationController(createSpecificationUseCase);

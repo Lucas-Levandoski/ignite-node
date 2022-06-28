@@ -1,4 +1,4 @@
-import { DataSource, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Category } from '../entities/Category';
 import { ICategoriesRepository } from './implementations/ICategoriesRepository';
 import PostgresDataSource from '../../../database';
@@ -11,18 +11,9 @@ export interface ICreateCategoryDTO {
 
 export class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
-  private static INSTANCE: CategoriesRepository;
 
-  constructor(dataSource: DataSource) {
-    this.repository = dataSource.getRepository(Category);
-  }
-
-  public static getInstance(): CategoriesRepository {
-    if (!CategoriesRepository.INSTANCE) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository(PostgresDataSource);
-    }
-
-    return CategoriesRepository.INSTANCE;
+  constructor() {
+    this.repository = PostgresDataSource.getRepository(Category);
   }
 
   async create({ name, description }: ICreateCategoryDTO): Promise<Category> {

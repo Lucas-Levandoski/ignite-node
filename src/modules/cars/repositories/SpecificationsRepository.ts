@@ -1,23 +1,14 @@
-import { DataSource, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Specification } from '../entities/Specification';
 import { ICreateSpecificationDTO, ISpecificationsRepository } from './implementations/ISpecificationsRepository';
 import PostgresDataSource from '../../../database';
 
 
 export class SpecificationsRepository implements ISpecificationsRepository {
-  private static INSTANCE: SpecificationsRepository;
   private repository: Repository<Specification>;
 
-  constructor(dataSource: DataSource) {
-    this.repository = dataSource.getRepository(Specification);
-  }
-
-  public static getInstance(): SpecificationsRepository {
-    if (!SpecificationsRepository.INSTANCE) {
-      SpecificationsRepository.INSTANCE = new SpecificationsRepository(PostgresDataSource);
-    }
-
-    return SpecificationsRepository.INSTANCE;
+  constructor() {
+    this.repository = PostgresDataSource.getRepository(Specification);
   }
 
   async create({ description, name }: ICreateSpecificationDTO): Promise<Specification> {
