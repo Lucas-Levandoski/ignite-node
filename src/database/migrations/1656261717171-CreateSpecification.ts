@@ -7,24 +7,10 @@ export class CreateSpecification1656261717171 implements MigrationInterface {
       new Table({
         name: 'specifications',
         columns: [
-          {
-            name: 'id',
-            type: 'uuid',
-            isPrimary: true
-          },
-          {
-            name: 'name',
-            type: 'varchar',
-          },
-          {
-            name: 'description',
-            type: 'varchar',
-          },
-          {
-            name: 'created_at',
-            type: 'timestamp',
-            default: 'now()'
-          }
+          { name: 'id', type: 'uuid', isPrimary: true },
+          { name: 'name', type: 'varchar' },
+          { name: 'description', type: 'varchar' },
+          { name: 'created_at', type: 'timestamp', default: 'now()' }
         ]
       })
     );
