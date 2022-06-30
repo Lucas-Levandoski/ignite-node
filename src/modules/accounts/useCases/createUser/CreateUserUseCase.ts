@@ -17,7 +17,7 @@ export class CreateUserUseCase {
     private usersRepository: IUsersRepository
   ) { }
 
-  execute(data: IRequest) {
-    this.usersRepository.create(data);
+  async execute(data: IRequest): Promise<void> {
+    return await this.usersRepository.create(data);
   }
 }
