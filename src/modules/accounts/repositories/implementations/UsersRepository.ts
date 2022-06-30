@@ -3,6 +3,7 @@ import PostgresDataSource from '../../../../database';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { User } from '../../entities/User';
 import { IUsersRepository } from '../IUsersRepository';
+import { hash } from 'bcryptjs';
 
 
 export class UsersRepository implements IUsersRepository {
@@ -13,11 +14,18 @@ export class UsersRepository implements IUsersRepository {
     this.repository = PostgresDataSource.getRepository(User);
   }
 
-  async create({ name, username, email, driverLicense, password }: ICreateUserDTO): Promise<void> {
+  async create({ name, email, driverLicense, password }: ICreateUserDTO): Promise<void> {
+    const passwordHash = await hash(password, 5);
+
+
     const user = this.repository.create({
-      name, username, email, driverLicense, password
+      name, email, driverLicense, password: passwordHash
     });
 
     await this.repository.save(user);
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    return await this.repository.findOne({ where: { email } });
   }
 }

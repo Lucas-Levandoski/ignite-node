@@ -3,7 +3,6 @@ import { IUsersRepository } from '../../repositories/IUsersRepository';
 
 interface IRequest {
   name: string;
-  username: string;
   password: string;
   email: string;
   driverLicense: string;
@@ -18,6 +17,11 @@ export class CreateUserUseCase {
   ) { }
 
   async execute(data: IRequest): Promise<void> {
+    const user = await this.usersRepository.findByEmail(data.email);
+
+    if (user)
+      throw new Error('email already registered by another user');
+
     return await this.usersRepository.create(data);
   }
 }
