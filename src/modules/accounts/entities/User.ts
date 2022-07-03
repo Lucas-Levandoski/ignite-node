@@ -23,7 +23,7 @@ export class User {
   isAdmin: boolean;
 
   @CreateDateColumn()
-  created_at?: Date;
+  created_at: Date;
 
   constructor() {
     if (!this.id)

@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { AppError } from '../../../../errors/AppError';
 import { Specification } from '../../entities/Specification';
 import { ISpecificationsRepository } from '../../repositories/ISpecificationsRepository';
 
@@ -22,7 +23,7 @@ export class CreateSpecificationUseCase {
     });
 
     if (specificationExists) {
-      throw new Error('Specification already exists');
+      throw new AppError('Specification already exists', 404);
     }
 
     return await this.specificationRepository.create({ name, description });

@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { AppError } from '../../../../errors/AppError';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 
 interface IRequest {
@@ -20,7 +21,7 @@ export class CreateUserUseCase {
     const user = await this.usersRepository.findByEmail(data.email);
 
     if (user)
-      throw new Error('email already registered by another user');
+      throw new AppError('email already registered by another user', 404);
 
     return await this.usersRepository.create(data);
   }
