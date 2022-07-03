@@ -8,12 +8,8 @@ export class CreateUserController {
 
     const createUserUseCase = container.resolve(CreateUserUseCase);
 
-    try {
-      createUserUseCase.execute({ name, password, email, driverLicense });
-    } catch (e) {
-      return res.status(400).send('email already registered');
-    }
+    createUserUseCase.execute({ name, password, email, driverLicense });
 
-    return res.status(201).json({});
+    return res.status(201).json({ message: `user ${name} successfully created` });
   }
 }

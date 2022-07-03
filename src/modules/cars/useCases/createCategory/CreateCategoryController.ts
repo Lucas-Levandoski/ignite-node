@@ -8,15 +8,7 @@ export class CreateCategoryController {
     const { name, description } = req.body;
     const createCategoryUseCase = container.resolve(CreateCategoryUseCase);
 
-    let category;
-
-    try {
-      await createCategoryUseCase.execute({ name, description }).then(result => {
-        category = result;
-      });
-    } catch (e) {
-      return res.status(400).json({ error: `category name '${name}' already exists` });
-    }
+    const category = await createCategoryUseCase.execute({ name, description });
 
     return res.status(201).json(category);
   }
