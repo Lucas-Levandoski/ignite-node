@@ -4,6 +4,7 @@ import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { User } from '../../entities/User';
 import { IUsersRepository } from '../IUsersRepository';
 import { hash } from 'bcryptjs';
+import { AppError } from '../../../../errors/AppError';
 
 
 export class UsersRepository implements IUsersRepository {
@@ -14,12 +15,11 @@ export class UsersRepository implements IUsersRepository {
     this.repository = PostgresDataSource.getRepository(User);
   }
 
-  async create({ name, email, driverLicense, password }: ICreateUserDTO): Promise<void> {
+  async create({ id, name, email, driverLicense, password, avatar }: ICreateUserDTO): Promise<void> {
     const passwordHash = await hash(password, 5);
 
-
     const user = this.repository.create({
-      name, email, driverLicense, password: passwordHash
+      id, name, email, driverLicense, avatar, password: passwordHash
     });
 
     await this.repository.save(user);
