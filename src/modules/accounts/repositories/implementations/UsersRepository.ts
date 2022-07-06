@@ -4,7 +4,6 @@ import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { User } from '../../entities/User';
 import { IUsersRepository } from '../IUsersRepository';
 import { hash } from 'bcryptjs';
-import { AppError } from '../../../../errors/AppError';
 
 
 export class UsersRepository implements IUsersRepository {
