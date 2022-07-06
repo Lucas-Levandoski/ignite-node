@@ -17,7 +17,7 @@ services:
       - 3333:3333
     volumes:
       - .:/app
-    
+
 volumes:
   pgdata: 
     driver: local
