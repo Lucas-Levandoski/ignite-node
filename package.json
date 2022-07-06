@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --poll --respawn src/app.ts",
     "start": "nodemon --watch --inspect 'src/' --exec ts-node src/app.ts -e ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "typeorm": "typeorm-ts-node-commonjs"
   },
   "author": "lls",
@@ -38,7 +38,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "eslint": "^8.18.0",
-    "jest": "^28.1.0",
+    "jest": "^28.1.2",
     "nodemon": "^2.0.16",
     "supertest": "^6.2.3",
     "swagger-ui-express": "^4.4.0",
