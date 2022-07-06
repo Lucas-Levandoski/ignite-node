@@ -1,5 +1,5 @@
 import express from 'express';
-import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import { ensureAuthenticated } from '@middlewares/ensureAuthenticated';
 import { authenticateRoutes } from './authenticate.routes';
 import { categoriesRoutes } from './categories.routes';
 import { specificationsRoutes } from './specifications.routes';

@@ -7,6 +7,16 @@
     "module": "commonjs",
     "target": "es2021",
 
+    "baseUrl": "./src",
+    "paths": {
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@shared/*": ["shared/*"],
+      "@errors/*": ["errors/*"],
+      "@database/*": ["database/*"],
+      "@utils/*": ["utils/*"],
+      "@middlewares/*": ["middlewares/*"]
+    },
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,

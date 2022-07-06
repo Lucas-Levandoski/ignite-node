@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
-import { Category } from '../../entities/Category';
-import { ICategoriesRepository } from '../ICategoriesRepository';
-import PostgresDataSource from '../../../../database';
+import { Category } from '@modules/cars/entities/Category';
+import { ICategoriesRepository } from '@modules/cars/repositories/ICategoriesRepository';
+import PostgresDataSource from '@database/index';
 
 // DTO = Data Transfer Object
 export interface ICreateCategoryDTO {
