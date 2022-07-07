@@ -1,5 +1,5 @@
-import { Category } from '@modules/cars/entities/Category';
-import { ICreateCategoryDTO } from './implementations/CategoriesRepository';
+import { Category } from '@modules/cars/infra/typeorm/entities/Category';
+import { ICreateCategoryDTO } from '@modules/cars/infra/typeorm/repositories/CategoriesRepository';
 
 
 export interface ICategoriesRepository {
