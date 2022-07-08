@@ -13,7 +13,6 @@ export class CreateCars1657241302179 implements MigrationInterface {
           { name: 'daily_rate', type: 'numeric' },
           { name: 'available', type: 'boolean' },
           { name: 'license_plate', type: 'varchar' },
-          { name: 'license_plate', type: 'varchar' },
           { name: 'fine_amount', type: 'numeric' },
           { name: 'brand', type: 'varchar' },
           { name: 'category_id', type: 'uuid', isNullable: false },
