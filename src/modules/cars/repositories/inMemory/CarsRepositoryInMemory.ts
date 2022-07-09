@@ -17,4 +17,7 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     return;
   }
 
+  async findByName(name: string): Promise<Car> {
+    return new Car();
+  }
 }
