@@ -9,8 +9,12 @@ import { SpecificationsRepository } from '@modules/cars/infra/typeorm/repositori
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository';
 
+import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { CarsRepository } from '@modules/cars/infra/typeorm/repositories/CarsRepository';
+
 
 container.registerSingleton<ICategoriesRepository>('CategoriesRepository', CategoriesRepository);
 container.registerSingleton<ISpecificationsRepository>('SpecificationsRepository', SpecificationsRepository);
 container.registerSingleton<IUsersRepository>('UsersRepository', UsersRepository);
+container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository);
 

@@ -30,7 +30,6 @@ export class Car {
   @Column({ name: 'category_id' })
   categoryId: string;
 
-
   @CreateDateColumn()
   created_at: Date;
 
