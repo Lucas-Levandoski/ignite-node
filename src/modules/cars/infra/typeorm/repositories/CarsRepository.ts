@@ -4,7 +4,7 @@ import { Car } from '../entities/Car';
 
 
 export class CarsRepository implements ICarsRepository {
-  create(data: ICreateCarDTO): Promise<void> {
+  create(data: ICreateCarDTO): Promise<Car> {
     throw new Error();
   }
 

@@ -25,7 +25,7 @@ describe('Create car use case', () => {
 
     const car = await carsRepositoryInMemory.findByLicensePlate('asf1234');
 
-    expect(car).toBeDefined();
+    expect(car).toHaveProperty('id');
   });
 
   it('should not be able to create a car with already registered license plate', async () => {
@@ -43,5 +43,19 @@ describe('Create car use case', () => {
       await createCarUseCase.execute(requestContent);
       await createCarUseCase.execute(requestContent);
     }).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should be able to create a new car with default true for available', async () => {
+    const car = await createCarUseCase.execute({
+      name: 'new car',
+      description: 'new description',
+      brand: 'new brand',
+      categoryId: 'cateogryId',
+      dailyRate: 123,
+      fineAmount: 123,
+      licensePlate: 'asf1234'
+    });
+
+    expect(car.available).toEqual(true);
   });
 });

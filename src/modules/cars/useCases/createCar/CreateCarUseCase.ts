@@ -1,4 +1,5 @@
 import { AppError } from '@errors/AppError';
+import { Car } from '@modules/cars/infra/typeorm/entities/Car';
 import { CarsRepository } from '@modules/cars/infra/typeorm/repositories/CarsRepository';
 import { inject, injectable } from 'tsyringe';
 
@@ -20,13 +21,13 @@ export class CreateCarUseCase {
     private carsRepository: CarsRepository
   ) { }
 
-  async execute(data: IRequest): Promise<void> {
+  async execute(data: IRequest): Promise<Car> {
     const carExists = await this.carsRepository.findByLicensePlate(data.licensePlate);
 
     if (carExists)
       throw new AppError('license plate already registered', 400);
 
-    this.carsRepository.create(data);
+    return await this.carsRepository.create(data);
   }
 
 }
