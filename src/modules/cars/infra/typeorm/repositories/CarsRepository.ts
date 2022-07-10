@@ -11,4 +11,8 @@ export class CarsRepository implements ICarsRepository {
   findByName(name: string): Promise<Car> {
     throw new Error();
   }
+
+  findByLicensePlate(plate: string): Promise<Car | undefined> {
+    throw new Error();
+  }
 }
