@@ -30,16 +30,19 @@ export class CarsRepository implements ICarsRepository {
   }
 
   async findAll({ brand, categoryId, dailyRate, fineAmount, name }: IFindCarDTO): Promise<Car[]> {
+    const carsQuery = this.repository
+      .createQueryBuilder('c')
+      .where('available = true');
 
-    return await this.repository.find({
-      where: {
-        available: true,
-        brand,
-        categoryId,
-        dailyRate,
-        fineAmount,
-        name
-      }
-    });
+    if (brand) carsQuery.andWhere(`c.brand = '${brand}'`);
+
+    if (categoryId) carsQuery.andWhere(`c.categoryId = '${categoryId}'`);
+
+    if (dailyRate) carsQuery.andWhere(`c.dailyRate = ${dailyRate}`);
+
+    if (fineAmount) carsQuery.andWhere(`c.name = '${name}'`);
+
+
+    await carsQuery.getMany();
   }
 }
