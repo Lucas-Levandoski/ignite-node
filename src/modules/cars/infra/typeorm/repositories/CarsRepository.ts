@@ -1,5 +1,6 @@
 import PostgresDataSource from '@database/index';
 import { ICreateCarDTO } from '@modules/cars/dtos/ICreateCarDTO';
+import { IFindCarDTO } from '@modules/cars/dtos/IFindCarDTO';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { Repository } from 'typeorm';
 import { Car } from '../entities/Car';
@@ -28,7 +29,17 @@ export class CarsRepository implements ICarsRepository {
     return await this.repository.findOne({ where: { licensePlate: plate } }) ?? undefined;
   }
 
-  async findAvailable(): Promise<Car[]> {
-    return await this.repository.find({ where: { available: true } });
+  async findAll({ brand, categoryId, dailyRate, fineAmount, name }: IFindCarDTO): Promise<Car[]> {
+
+    return await this.repository.find({
+      where: {
+        available: true,
+        brand,
+        categoryId,
+        dailyRate,
+        fineAmount,
+        name
+      }
+    });
   }
 }

@@ -1,6 +1,7 @@
 import { Car } from '@modules/cars/infra/typeorm/entities/Car';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { ICreateCarDTO } from '@modules/cars/dtos/ICreateCarDTO';
+import { IFindCarDTO } from '@modules/cars/dtos/IFindCarDTO';
 
 
 export class CarsRepositoryInMemory implements ICarsRepository {
@@ -25,7 +26,22 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     return this.cars.find(car => car.licensePlate === plate);
   }
 
-  async findAvailable(): Promise<Car[]> {
-    return this.cars.filter(car => car.available);
+  async findAll({ brand, categoryId, dailyRate, fineAmount, name }: IFindCarDTO): Promise<Car[]> {
+    return this.cars.filter(car => {
+      if (!car.available)
+        return false;
+      if (brand ? !(car.brand === brand) : true)
+        return false;
+      if (categoryId ? !(car.categoryId === categoryId) : true)
+        return false;
+      if (dailyRate ? !(car.dailyRate === dailyRate) : true)
+        return false;
+      if (fineAmount ? !(car.fineAmount === fineAmount) : true)
+        return false;
+      if (name ? !(car.name === name) : true)
+        return false;
+
+      return true;
+    });
   }
 }
