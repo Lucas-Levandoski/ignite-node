@@ -42,7 +42,6 @@ export class CarsRepository implements ICarsRepository {
 
     if (fineAmount) carsQuery.andWhere(`c.name = '${name}'`);
 
-
     return await carsQuery.getMany();
   }
 }
