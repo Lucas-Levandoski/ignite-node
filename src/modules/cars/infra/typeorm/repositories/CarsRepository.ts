@@ -30,6 +30,10 @@ export class CarsRepository implements ICarsRepository {
     return await this.repository.findOne({ where: { licensePlate: plate } }) ?? undefined;
   }
 
+  async findById(carId: string): Promise<Car | undefined> {
+    return await this.repository.findOne({ where: { id: carId } }) ?? undefined;
+  }
+
   async findAll({ brand, categoryId, dailyRate, fineAmount, name }: IFindCarDTO): Promise<Car[]> {
     const carsQuery = this.repository
       .createQueryBuilder('c')
@@ -47,6 +51,7 @@ export class CarsRepository implements ICarsRepository {
   }
 
   async createSpecification(data: ICreateCarSpecificationDTO): Promise<void> {
-
+    // await this.repository.
+    throw new Error();
   }
 }

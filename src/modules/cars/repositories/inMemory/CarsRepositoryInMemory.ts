@@ -23,6 +23,10 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     return this.cars.find(car => car.name === name);
   }
 
+  async findById(carId: string): Promise<Car | undefined> {
+    return this.cars.find(car => car.id === carId);
+  }
+
   async findByLicensePlate(plate: string): Promise<Car | undefined> {
     return this.cars.find(car => car.licensePlate === plate);
   }

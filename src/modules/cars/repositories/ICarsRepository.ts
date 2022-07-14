@@ -8,5 +8,6 @@ export interface ICarsRepository {
   findByName(name: string): Promise<Car | undefined>;
   findByLicensePlate(plate: string): Promise<Car | undefined>;
   findAll(data?: IFindCarDTO): Promise<Car[]>;
+  findById(carId: string): Promise<Car | undefined>;
   createSpecification(data: ICreateCarSpecificationDTO): Promise<void>;
 }
