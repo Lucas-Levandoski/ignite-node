@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { Specification } from '@modules/cars/infra/typeorm/entities/Specification';
 import { ICreateSpecificationDTO, ISpecificationsRepository } from '@modules/cars/repositories/ISpecificationsRepository';
 import PostgresDataSource from '@database/index';
@@ -21,13 +21,7 @@ export class SpecificationsRepository implements ISpecificationsRepository {
   }
 
   async findByIds(ids: string[]): Promise<Specification[]> {
-    const specifications: Specification[] = [];
-
-    ids.forEach(async id => {
-      specifications.push(... await this.repository.findBy({ id }));
-    });
-
-    return specifications;
+    return await this.repository.findBy({ id: In(ids) });
   }
 
   async findByName(name: string): Promise<Specification | null> {
