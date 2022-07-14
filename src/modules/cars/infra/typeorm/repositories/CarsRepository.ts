@@ -1,5 +1,6 @@
 import PostgresDataSource from '@database/index';
 import { ICreateCarDTO } from '@modules/cars/dtos/ICreateCarDTO';
+import { ICreateCarSpecificationDTO } from '@modules/cars/dtos/ICreateCarSpecificationDTO';
 import { IFindCarDTO } from '@modules/cars/dtos/IFindCarDTO';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { Repository } from 'typeorm';
@@ -21,8 +22,8 @@ export class CarsRepository implements ICarsRepository {
     return car;
   }
 
-  findByName(name: string): Promise<Car> {
-    throw new Error();
+  async findByName(name: string): Promise<Car | undefined> {
+    return await this.repository.findOne({ where: { name } }) ?? undefined;
   }
 
   async findByLicensePlate(plate: string): Promise<Car | undefined> {
@@ -43,5 +44,9 @@ export class CarsRepository implements ICarsRepository {
     if (fineAmount) carsQuery.andWhere(`c.name = '${name}'`);
 
     return await carsQuery.getMany();
+  }
+
+  async createSpecification(data: ICreateCarSpecificationDTO): Promise<void> {
+
   }
 }

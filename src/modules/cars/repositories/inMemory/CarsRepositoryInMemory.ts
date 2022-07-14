@@ -2,6 +2,7 @@ import { Car } from '@modules/cars/infra/typeorm/entities/Car';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { ICreateCarDTO } from '@modules/cars/dtos/ICreateCarDTO';
 import { IFindCarDTO } from '@modules/cars/dtos/IFindCarDTO';
+import { ICreateCarSpecificationDTO } from '@modules/cars/dtos/ICreateCarSpecificationDTO';
 
 
 export class CarsRepositoryInMemory implements ICarsRepository {
@@ -18,8 +19,8 @@ export class CarsRepositoryInMemory implements ICarsRepository {
     return car;
   }
 
-  async findByName(name: string): Promise<Car> {
-    return new Car();
+  async findByName(name: string): Promise<Car | undefined> {
+    return this.cars.find(car => car.name === name);
   }
 
   async findByLicensePlate(plate: string): Promise<Car | undefined> {
@@ -43,5 +44,9 @@ export class CarsRepositoryInMemory implements ICarsRepository {
 
       return true;
     });
+  }
+
+  async createSpecification(data: ICreateCarSpecificationDTO): Promise<void> {
+    throw new Error();
   }
 }
