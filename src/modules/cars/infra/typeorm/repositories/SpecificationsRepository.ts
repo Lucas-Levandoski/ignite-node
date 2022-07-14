@@ -20,6 +20,16 @@ export class SpecificationsRepository implements ISpecificationsRepository {
     return await this.repository.save(specification);
   }
 
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    const specifications: Specification[] = [];
+
+    ids.forEach(async id => {
+      specifications.push(... await this.repository.findBy({ id }));
+    });
+
+    return specifications;
+  }
+
   async findByName(name: string): Promise<Specification | null> {
     return await this.repository.findOne({
       where: {
@@ -31,4 +41,5 @@ export class SpecificationsRepository implements ISpecificationsRepository {
   async list(): Promise<Specification[]> {
     return await this.repository.find();
   }
+
 }
