@@ -9,8 +9,8 @@ export class CreateCarSpecificationController {
     const createCarSpecificationUseCase = container.resolve(CreateCarSpecificationUseCase);
     const { carId, specificationsId } = req.body;
 
-    await createCarSpecificationUseCase.execute({ carId, specificationsId });
+    const car = await createCarSpecificationUseCase.execute({ carId, specificationsId });
 
-    return res.status(201).json({ message: 'specification create successfully' });
+    return res.status(201).json(car);
   }
 }

@@ -9,7 +9,7 @@ export class CreateSpecificationsCars1657679421936 implements MigrationInterface
         columns: [
           { name: 'car_id', type: 'uuid' },
           { name: 'specification_id', type: 'uuid' },
-          { name: 'created_ad', type: 'timestamp', default: 'now()' },
+          { name: 'created_at', type: 'timestamp', default: 'now()' },
         ]
       })
     );

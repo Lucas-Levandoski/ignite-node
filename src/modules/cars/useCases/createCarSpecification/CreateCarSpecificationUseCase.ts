@@ -1,5 +1,6 @@
 import { AppError } from '@errors/AppError';
 import { ICreateCarSpecificationDTO } from '@modules/cars/dtos/ICreateCarSpecificationDTO';
+import { Car } from '@modules/cars/infra/typeorm/entities/Car';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { ISpecificationsRepository } from '@modules/cars/repositories/ISpecificationsRepository';
 import { inject, injectable } from 'tsyringe';
@@ -16,7 +17,7 @@ export class CreateCarSpecificationUseCase {
     private specificationsRepository: ISpecificationsRepository
   ) { }
 
-  async execute({ carId, specificationsId }: ICreateCarSpecificationDTO): Promise<void> {
+  async execute({ carId, specificationsId }: ICreateCarSpecificationDTO): Promise<Car> {
     const carExists = await this.carsRepository.findById(carId);
 
     if (!carExists) throw new AppError('this car does not exist', 400);
@@ -24,5 +25,7 @@ export class CreateCarSpecificationUseCase {
     carExists.specifications = await this.specificationsRepository.findByIds(specificationsId);
 
     this.carsRepository.create(carExists);
+
+    return carExists;
   }
 }

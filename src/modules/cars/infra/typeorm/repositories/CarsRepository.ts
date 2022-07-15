@@ -1,6 +1,5 @@
 import PostgresDataSource from '@database/index';
 import { ICreateCarDTO } from '@modules/cars/dtos/ICreateCarDTO';
-import { ICreateCarSpecificationDTO } from '@modules/cars/dtos/ICreateCarSpecificationDTO';
 import { IFindCarDTO } from '@modules/cars/dtos/IFindCarDTO';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { Repository } from 'typeorm';
@@ -16,6 +15,8 @@ export class CarsRepository implements ICarsRepository {
 
   async create(data: ICreateCarDTO): Promise<Car> {
     const car = this.repository.create(data);
+
+    console.log(car.specifications[0].name);
 
     await this.repository.save(car);
 
@@ -37,7 +38,8 @@ export class CarsRepository implements ICarsRepository {
   async findAll({ brand, categoryId, dailyRate, fineAmount, name }: IFindCarDTO = {}): Promise<Car[]> {
     const carsQuery = this.repository
       .createQueryBuilder('c')
-      .where('available = true');
+      .where('available = true')
+      .leftJoinAndSelect('c.specifications', 'specifications');
 
     if (brand) carsQuery.andWhere(`c.brand = '${brand}'`);
 
@@ -47,11 +49,8 @@ export class CarsRepository implements ICarsRepository {
 
     if (fineAmount) carsQuery.andWhere(`c.name = '${name}'`);
 
-    return await carsQuery.getMany();
-  }
+    const cars = await carsQuery.getMany();
 
-  async createSpecification(data: ICreateCarSpecificationDTO): Promise<void> {
-    // await this.repository.
-    throw new Error();
+    return cars;
   }
 }
