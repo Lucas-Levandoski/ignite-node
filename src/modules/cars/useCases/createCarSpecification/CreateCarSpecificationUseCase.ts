@@ -16,12 +16,12 @@ export class CreateCarSpecificationUseCase {
     private specificationsRepository: ISpecificationsRepository
   ) { }
 
-  async execute({ car_id, specifications_id }: ICreateCarSpecificationDTO): Promise<void> {
-    const carExists = await this.carsRepository.findById(car_id);
+  async execute({ carId, specificationsId }: ICreateCarSpecificationDTO): Promise<void> {
+    const carExists = await this.carsRepository.findById(carId);
 
     if (!carExists) throw new AppError('this car does not exist', 400);
 
-    carExists.specifications = await this.specificationsRepository.findByIds(specifications_id);
+    carExists.specifications = await this.specificationsRepository.findByIds(specificationsId);
 
     this.carsRepository.create(carExists);
   }

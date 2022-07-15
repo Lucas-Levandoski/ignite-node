@@ -5,12 +5,12 @@ import { CreateCarSpecificationUseCase } from './CreateCarSpecificationUseCase';
 
 export class CreateCarSpecificationController {
 
-  async handle(req: Request, res: Response): Promise<void> {
+  async handle(req: Request, res: Response): Promise<Response> {
     const createCarSpecificationUseCase = container.resolve(CreateCarSpecificationUseCase);
-    const { car_id, specifications_id } = req.body;
+    const { carId, specificationsId } = req.body;
 
-    await createCarSpecificationUseCase.execute({ car_id, specifications_id });
+    await createCarSpecificationUseCase.execute({ carId, specificationsId });
 
-    throw new Error();
+    return res.status(201).json({ message: 'specification create successfully' });
   }
 }

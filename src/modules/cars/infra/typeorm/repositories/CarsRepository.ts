@@ -34,7 +34,7 @@ export class CarsRepository implements ICarsRepository {
     return await this.repository.findOne({ where: { id: carId } }) ?? undefined;
   }
 
-  async findAll({ brand, categoryId, dailyRate, fineAmount, name }: IFindCarDTO): Promise<Car[]> {
+  async findAll({ brand, categoryId, dailyRate, fineAmount, name }: IFindCarDTO = {}): Promise<Car[]> {
     const carsQuery = this.repository
       .createQueryBuilder('c')
       .where('available = true');

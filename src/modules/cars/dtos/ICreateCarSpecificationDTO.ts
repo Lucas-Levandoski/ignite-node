@@ -1,4 +1,4 @@
 export interface ICreateCarSpecificationDTO {
-  car_id: string;
-  specifications_id: string[];
+  carId: string;
+  specificationsId: string[];
 }
