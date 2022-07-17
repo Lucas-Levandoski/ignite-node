@@ -12,11 +12,14 @@ export class CarsImageRepository implements ICarsImageRepository {
     this.repository = PostgresDataSource.getRepository(CarsImage);
   }
 
-  async create(carId: string, imageNames: string[]): Promise<CarsImage> {
-    const carsImage = this.repository.create({ carId, imageName: imageNames[0] });
+  async create(carId: string, imageNames: string[]): Promise<void> {
 
-    await this.repository.save(carsImage);
+    imageNames.forEach(async (imageName) => {
+      const carsImage = this.repository.create({ carId, imageName });
+      await this.repository.save(carsImage);
+    });
 
-    return carsImage;
+
+    return;
   }
 }
