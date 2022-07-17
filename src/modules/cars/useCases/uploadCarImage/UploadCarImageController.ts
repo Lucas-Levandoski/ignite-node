@@ -10,7 +10,7 @@ export class UploadCarImageController {
 
   async handle(req: Request, res: Response): Promise<Response> {
     const uploadCarImageUseCase = container.resolve(UploadCarImageUseCase);
-    const { carId } = req.body;
+    const { carId } = req.params;
     const imageNames = (req.files as IFiles[]).map(file => file.filename);
 
     await uploadCarImageUseCase.execute(carId, imageNames);
