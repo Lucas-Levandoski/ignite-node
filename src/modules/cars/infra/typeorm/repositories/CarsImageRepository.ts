@@ -12,8 +12,8 @@ export class CarsImageRepository implements ICarsImageRepository {
     this.repository = PostgresDataSource.getRepository(CarsImage);
   }
 
-  async create(carId: string, imageName: string): Promise<CarsImage> {
-    const carsImage = this.repository.create({ carId, imageName });
+  async create(carId: string, imageNames: string[]): Promise<CarsImage> {
+    const carsImage = this.repository.create({ carId, imageName: imageNames[0] });
 
     await this.repository.save(carsImage);
 

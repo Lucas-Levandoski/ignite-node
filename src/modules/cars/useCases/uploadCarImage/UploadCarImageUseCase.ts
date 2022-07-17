@@ -15,12 +15,12 @@ export class UploadCarImageUseCase {
     private carsRepository: ICarsRepository
   ) { }
 
-  async execute(carId: string, imageName: string): Promise<CarsImage> {
+  async execute(carId: string, imageNames: string[]): Promise<CarsImage> {
     const carExists = this.carsRepository.findById(carId);
 
     if (!carExists) throw new AppError('this car does not exist', 400);
 
-    const carsImage = await this.carsImagesRepository.create(carId, imageName);
+    const carsImage = await this.carsImagesRepository.create(carId, imageNames);
 
     return carsImage;
   }

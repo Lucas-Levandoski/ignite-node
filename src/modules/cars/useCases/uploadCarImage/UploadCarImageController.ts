@@ -7,9 +7,9 @@ export class UploadCarImageController {
 
   async handle(req: Request, res: Response): Promise<Response> {
     const uploadCarImageUseCase = container.resolve(UploadCarImageUseCase);
-    const { carId, imageName } = req.body;
+    const { carId, imageNames } = req.body;
 
-    await uploadCarImageUseCase.execute(carId, imageName);
+    await uploadCarImageUseCase.execute(carId, imageNames);
 
     return res.status(201).json({ message: 'car image created' });
   }
