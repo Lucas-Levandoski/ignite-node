@@ -6,7 +6,7 @@ export class CarsImage {
   @PrimaryColumn()
   id: string;
 
-  @Column({ name: 'car_id ' })
+  @Column({ name: 'car_id' })
   carId: string;
 
   @Column({ name: 'image_name' })
