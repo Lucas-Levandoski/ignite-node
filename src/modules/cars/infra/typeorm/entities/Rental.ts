@@ -31,7 +31,7 @@ export class Rental {
   @CreateDateColumn()
   updated_at?: Date;
 
-  constructor(name: string, description: string) {
+  constructor() {
     this.id = uuidV4();
   }
 }
