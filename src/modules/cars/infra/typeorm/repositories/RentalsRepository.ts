@@ -1,7 +1,7 @@
 import PostgresDataSource from '@database/index';
 import { ICreateRentalDTO } from '@modules/cars/dtos/ICreateRentalDTO';
 import { IRentalsRepository } from '@modules/cars/repositories/IRentalsRepository';
-import { Repository } from 'typeorm';
+import { LessThan, Repository } from 'typeorm';
 import { Rental } from '../entities/Rental';
 
 
@@ -20,6 +20,6 @@ export class RentalsRepository implements IRentalsRepository {
   }
 
   async findOpenRentalByCar(carId: string): Promise<Rental | null> {
-    return await this.repository.findOne({ where: { carId } });
+    return await this.repository.findOne({ where: { carId, endDate: LessThan(new Date()) } });
   }
 }

@@ -1,13 +1,8 @@
-import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { AppError } from '@errors/AppError';
+import { ICreateRentalDTO } from '@modules/cars/dtos/ICreateRentalDTO';
 import { IRentalsRepository } from '@modules/cars/repositories/IRentalsRepository';
 import { inject, injectable } from 'tsyringe';
 
-
-interface IRequest {
-  userId: string;
-  carId: string;
-  expectedReturnDate: Date;
-}
 
 
 @injectable()
@@ -18,9 +13,12 @@ export class CreateRentalUseCase {
     private repository: IRentalsRepository,
   ) { }
 
-  async execute(data: IRequest): Promise<void> {
+  async execute(data: ICreateRentalDTO): Promise<void> {
 
+    const carIsNotAvailable = await this.repository.findOpenRentalByCar(data.carId);
 
-    throw new Error();
+    if (carIsNotAvailable) throw new AppError('this car is not available', 400);
+
+    await this.repository.create(data);
   }
 }
