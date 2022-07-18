@@ -10,12 +10,12 @@ export class CreateRental1658110714167 implements MigrationInterface {
           { name: 'id', type: 'uuid', isPrimary: true },
           { name: 'car_id', type: 'uuid' },
           { name: 'user_id', type: 'uuid' },
-          { name: 'start_date', type: 'date' },
-          { name: 'end_date', type: 'date' },
-          { name: 'expected_return_date', type: 'date' },
+          { name: 'start_date', type: 'timestamp' },
+          { name: 'end_date', type: 'timestamp' },
+          { name: 'expected_return_date', type: 'timestamp' },
           { name: 'total', type: 'numeric' },
-          { name: 'created_at', type: 'date', default: 'now()' },
-          { name: 'updated_at', type: 'date' }
+          { name: 'created_at', type: 'timestamp', default: 'now()' },
+          { name: 'updated_at', type: 'timestamp' }
         ],
         foreignKeys: [
           {
