@@ -6,7 +6,7 @@ import { RefreshTokenUseCase } from './RefreshTokenUseCase';
 
 export class RefreshTokenController {
 
-  async handle(req: Request, res: Response): Promise<void> {
+  async handle(req: Request, res: Response): Promise<Response> {
     const bearer = req.headers.authorization;
     const refreshTokenUseCase = container.resolve(RefreshTokenUseCase);
 
@@ -14,8 +14,8 @@ export class RefreshTokenController {
 
     const [, token] = bearer.split(' ');
 
-    await refreshTokenUseCase.execute(token);
+    const refreshToken = await refreshTokenUseCase.execute(token);
 
-    return;
+    return res.status(200).json({ refreshToken });
   }
 }
