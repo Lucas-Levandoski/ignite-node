@@ -35,7 +35,5 @@ export class SendForgotPasswordUseCase {
     });
 
     await this.emailProvider.sendMail(user.email, 'password recovery', `The password recovery URL is ${token}`);
-
-    return;
   }
 }

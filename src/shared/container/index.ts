@@ -32,6 +32,6 @@ container.registerSingleton<IUsersTokensRepository>('UserTokensRepository', User
 container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository);
 container.registerSingleton<ICarsImageRepository>('CarsImagesRepository', CarsImageRepository);
 container.registerSingleton<IRentalsRepository>('RentalsRepository', RentalsRepository);
-container.registerSingleton<IMailProvider>('MailProvider', EtherealMailProvider);
+container.registerInstance<IMailProvider>('MailProvider', new EtherealMailProvider());
 
 
