@@ -25,7 +25,7 @@ import { RentalsRepository } from '@modules/cars/infra/typeorm/repositories/Rent
 container.registerSingleton<ICategoriesRepository>('CategoriesRepository', CategoriesRepository);
 container.registerSingleton<ISpecificationsRepository>('SpecificationsRepository', SpecificationsRepository);
 container.registerSingleton<IUsersRepository>('UsersRepository', UsersRepository);
-container.registerSingleton<IUsersTokensRepository>('UsersTokensRepository', UsersTokensRepository);
+container.registerSingleton<IUsersTokensRepository>('UserTokensRepository', UsersTokensRepository);
 container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository);
 container.registerSingleton<ICarsImageRepository>('CarsImagesRepository', CarsImageRepository);
 container.registerSingleton<IRentalsRepository>('RentalsRepository', RentalsRepository);

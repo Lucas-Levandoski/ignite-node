@@ -19,7 +19,5 @@ export class UsersTokensRepository implements IUsersTokensRepository {
     await this.repository.save(userToken);
 
     return userToken;
-
   }
-
 }
