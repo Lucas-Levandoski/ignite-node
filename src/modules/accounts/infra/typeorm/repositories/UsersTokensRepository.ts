@@ -20,4 +20,12 @@ export class UsersTokensRepository implements IUsersTokensRepository {
 
     return userToken;
   }
+
+  async findByUserId(userId: string): Promise<UserTokens[]> {
+    return await this.repository.find({
+      where: {
+        userId
+      }
+    });
+  }
 }
