@@ -24,8 +24,6 @@ export class SendForgotPasswordUseCase {
 
     if (!user) throw new AppError('user not found', 400);
 
-    console.log(user.email);
-
     const token = uuidV4();
 
     await this.usersTokensRepository.create({
