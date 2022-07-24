@@ -3,6 +3,7 @@ import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepositor
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { AppError } from '@errors/AppError';
+import { IUsersTokensRepository } from '@modules/accounts/repositories/IUsersTokensRepository';
 
 interface IRequest {
   password: string;
@@ -22,7 +23,9 @@ export class AuthenticateUserUseCase {
 
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    @inject('UserTokensRepository')
+    private userTokensRepository: IUsersTokensRepository
   ) { }
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
