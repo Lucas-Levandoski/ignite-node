@@ -5,6 +5,6 @@ import { RefreshTokenController } from '@modules/accounts/useCases/refreshToken/
 const authenticateRoutes = Router();
 
 authenticateRoutes.post('/', new AuthenticateUserController().handle);
-authenticateRoutes.get('/refresh-token', new RefreshTokenController().handle);
+authenticateRoutes.post('/refresh-token', new RefreshTokenController().handle);
 
 export { authenticateRoutes };

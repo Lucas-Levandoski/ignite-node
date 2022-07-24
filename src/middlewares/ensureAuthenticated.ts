@@ -8,6 +8,7 @@ interface IPayload {
 }
 
 export async function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
+  const secretRefreshToken = process.env.SECRET_REFRESH_TOKEN ?? 'random string';
   const authToken = req.headers.authorization;
 
   if (!authToken)
@@ -16,7 +17,7 @@ export async function ensureAuthenticated(req: Request, res: Response, next: Nex
   const [, token] = authToken.split(' ');
 
   try {
-    const { sub } = verify(token, 'cc862772bd3a95d82d2edda0c0a82d1a') as IPayload;
+    const { sub } = verify(token, secretRefreshToken) as IPayload;
 
     const usersRepository = new UsersRepository();
     const user = await usersRepository.findById(sub);
