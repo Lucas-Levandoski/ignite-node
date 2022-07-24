@@ -21,6 +21,9 @@ import { CarsImageRepository } from '@modules/cars/infra/typeorm/repositories/Ca
 import { IRentalsRepository } from '@modules/cars/repositories/IRentalsRepository';
 import { RentalsRepository } from '@modules/cars/infra/typeorm/repositories/RentalsRepository';
 
+import { IMailProvider } from '@shared/providers/IMailProvider';
+import { EtherealMailProvider } from '@shared/providers/implementations/EtherealMailProvider';
+
 
 container.registerSingleton<ICategoriesRepository>('CategoriesRepository', CategoriesRepository);
 container.registerSingleton<ISpecificationsRepository>('SpecificationsRepository', SpecificationsRepository);
@@ -29,5 +32,6 @@ container.registerSingleton<IUsersTokensRepository>('UserTokensRepository', User
 container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository);
 container.registerSingleton<ICarsImageRepository>('CarsImagesRepository', CarsImageRepository);
 container.registerSingleton<IRentalsRepository>('RentalsRepository', RentalsRepository);
+container.registerSingleton<IMailProvider>('MailProvider', EtherealMailProvider);
 
 
